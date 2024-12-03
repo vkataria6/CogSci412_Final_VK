@@ -1,0 +1,379 @@
+---
+title: "Cognitive Differences in Reward Processing between ADHD and Neurotypical Children"
+author: "Vidushi Kataria"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    theme: cerulean
+---
+
+```{r load, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(readr)
+```
+
+## Research Objective
+
+- How does reward processing differ between children diagnosed with ADHD and neurotypical children, and what implications do these differences have for cognitive development?
+
+## Fork Question
+
+- How does the timing and accuracy of responses during reward trials in the n-back task differ between children with ADHD and neurotypical children? 
+
+
+## Data Source 
+- Public datasets accessed from OpenNeuro.org: https://openneuro.org/datasets/ds002424/versions/1.2.0 
+
+
+## Method
+- Participants: Children with ADHD (5) and neurotypical children (5)
+- Experiment: Participants performed an n-back task, identifying whether a letter matched either by identity (verbal) or location (spatial)
+    - Conditions: Small vs. large rewards and immediate vs. delayed feedback
+    - Responses: Accuracy and timing of button-box presses analyzed during reward trials to compare groups
+- Design: Block design alternating between experimental (1-back, 2-back) and fixation blocks.
+
+
+```{r events01_files, include=FALSE}
+adhd_subjects <- c("sub-01", "sub-02", "sub-04", "sub-05", "sub-17")
+neurotypical_subjects <- c("sub-03", "sub-18", "sub-19", "sub-20", "sub-21")
+
+sub01_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-01"
+
+events01_files <- list.files(
+  path = sub01_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub01_data <- lapply(events01_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events02_files, include=FALSE}
+sub02_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-02"
+
+events02_files <- list.files(
+  path = sub02_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub02_data <- lapply(events02_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events03_files, include=FALSE}
+sub03_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-03"
+
+events03_files <- list.files(
+  path = sub03_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub03_data <- lapply(events03_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events04_files, include=FALSE}
+sub04_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-04"
+
+events04_files <- list.files(
+  path = sub04_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub04_data <- lapply(events04_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events05_files, include=FALSE}
+sub05_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-05"
+
+events05_files <- list.files(
+  path = sub05_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub05_data <- lapply(events05_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+`
+```{r events17_files, include=FALSE}
+sub17_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-17"
+
+events17_files <- list.files(
+  path = sub17_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub17_data <- lapply(events17_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events18_files, include=FALSE}
+sub18_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-18"
+
+events18_files <- list.files(
+  path = sub18_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub18_data <- lapply(events18_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events19_files, include=FALSE}
+sub19_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-19"
+
+events19_files <- list.files(
+  path = sub19_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub19_data <- lapply(events19_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events20_files, include=FALSE}
+sub20_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-20"
+
+events20_files <- list.files(
+  path = sub20_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub20_data <- lapply(events20_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events21_files, include=FALSE}
+sub21_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-21"
+
+events21_files <- list.files(
+  path = sub21_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub21_data <- lapply(events21_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r wrangling, include=FALSE}
+adhd_data <- bind_rows(sub01_data, sub02_data, sub04_data, sub05_data, sub17_data) %>%
+  mutate(group = "ADHD")
+
+neurotypical_data <- bind_rows(sub03_data, sub18_data, sub19_data, sub20_data, sub21_data) %>%
+  mutate(group = "Neurotypical")
+
+adhd_data$group <- "ADHD"
+neurotypical_data$group <- "Neurotypical"
+
+combined_data <- bind_rows(adhd_data, neurotypical_data)
+
+combined_data <- combined_data %>%
+  mutate(response_time = as.numeric(response_time))
+sum(is.na(combined_data$response_time))
+```
+
+
+```{r filter-reward, include=FALSE}
+reward_data <- combined_data %>%
+  filter(stimulus == "redcross.bmp") %>%  
+  group_by(group, task, trial_type) %>% 
+  summarize(
+    mean_acc = mean(accuracy, na.rm = TRUE),
+    mean_rt = mean(response_time, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  rename(reward_amount = task, feedback_type = trial_type)
+```
+
+
+```{r no1, include=FALSE}
+ggplot(reward_data, aes(x = reward_amount, y = mean_acc, fill = group)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  facet_wrap(~feedback_type) +
+  labs(
+    title = "Accuracy by Reward Amount and Feedback Type",
+    x = "Reward Amount",
+    y = "Mean Accuracy",
+    fill = "Group"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    strip.text = element_text(size = 12, face = "bold")
+  )
+
+print
+```
+
+
+
+```{r no2, include=FALSE}
+ggplot(reward_data, aes(x = reward_amount, y = mean_rt, fill = group)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  facet_wrap(~feedback_type) +
+  labs(
+    title = "Response Time by Reward Amount and Feedback Type",
+    x = "Reward Amount",
+    y = "Mean Response Time (s)",
+    fill = "Group"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    strip.text = element_text(size = 12, face = "bold")
+  )
+
+print
+```
+
+
+
+```{r sum-stats, include=FALSE}
+summary_stats <- reward_trials %>%
+  group_by(group, reward_feedback) %>%
+  summarize(
+    mean_rt = mean(response_time, na.rm = TRUE),
+    mean_acc = mean(accuracy, na.rm = TRUE),
+    sd_rt = sd(response_time, na.rm = TRUE),
+    sd_acc = sd(accuracy, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    se_rt = sd_rt / sqrt(n),
+    se_acc = sd_acc / sqrt(n)
+  )
+```
+
+
+```{r format, include=FALSE}
+fig1_data <- summary_stats %>%
+  pivot_longer(
+    cols = c(mean_rt, mean_acc),
+    names_to = "metric",
+    values_to = "value"
+  ) %>%
+  mutate(
+    se = ifelse(metric == "mean_rt", se_rt, se_acc),
+    metric = recode(metric, 
+                    mean_rt = "Reaction Time (s)", 
+                    mean_acc = "Accuracy (%)")
+  )
+```
+
+
+
+```{r fig-1, include=FALSE}
+fig_1 <- ggplot(fig1_data, 
+                aes(x = reward_feedback, 
+                    y = value, 
+                    color = group, 
+                    group = group)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = value - se, ymax = value + se), width = 0.2) +
+  facet_wrap(~ metric, scales = "free_y") +
+  labs(
+    title = "Differences in Timing and Accuracy During Reward Trials",
+    x = "Reward Size - Feedback Type",
+    y = NULL,
+    color = "Group"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    strip.text = element_text(size = 12, face = "bold"),
+    legend.position = "top"
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0.1, 0.2)))
+```
+
+
+## Figure 1
+```{r print-plot, include=TRUE, warning=FALSE}
+print(fig_1)
+```
+
+
