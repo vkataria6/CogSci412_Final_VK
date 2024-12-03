@@ -4,7 +4,7 @@ author: "Vidushi Kataria"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
-    theme: cerulean
+    theme: cerulean 
 ---
 
 ```{r load, include=FALSE}
