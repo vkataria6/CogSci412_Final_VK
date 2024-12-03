@@ -304,7 +304,7 @@ ggplot(reward_data, aes(x = reward_amount, y = mean_rt, fill = group)) +
     axis.text.x = element_text(angle = 45, hjust = 1),
     strip.text = element_text(size = 12, face = "bold")
   )
-
+  
 print
 ```
 
