@@ -15,7 +15,7 @@ library(readr)
 
 ## Research Objective
 
-- How does reward processing differ between children diagnosed with ADHD and neurotypical children, and what implications do these differences have for cognitive development?
+- How does reward processing differ between children diagnosed with ADHD and neurotypical children?
 
 ## Fork Question
 
@@ -268,8 +268,9 @@ reward_data <- combined_data %>%
 ```
 
 
-```{r no1, include=FALSE}
-ggplot(reward_data, aes(x = reward_amount, y = mean_acc, fill = group)) +
+
+```{r plot-1, include=FALSE}
+no1_plot <- ggplot(reward_data, aes(x = reward_amount, y = mean_acc, fill = group)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   facet_wrap(~feedback_type) +
   labs(
@@ -283,14 +284,18 @@ ggplot(reward_data, aes(x = reward_amount, y = mean_acc, fill = group)) +
     axis.text.x = element_text(angle = 45, hjust = 1),
     strip.text = element_text(size = 12, face = "bold")
   )
-
-print
 ```
 
 
+## Figure 1
+```{r fig-1, include=TRUE}
+print(no1_plot)
+```
+Neurotypical group generally has higher accuracy than the ADHD group, especially at higher reward amounts and for different feedback types (baseline, VLD, VSD). 
 
-```{r no2, include=FALSE}
-ggplot(reward_data, aes(x = reward_amount, y = mean_rt, fill = group)) +
+
+```{r plot-2, include=FALSE}
+no2_plot <- ggplot(reward_data, aes(x = reward_amount, y = mean_rt, fill = group)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   facet_wrap(~feedback_type) +
   labs(
@@ -304,76 +309,20 @@ ggplot(reward_data, aes(x = reward_amount, y = mean_rt, fill = group)) +
     axis.text.x = element_text(angle = 45, hjust = 1),
     strip.text = element_text(size = 12, face = "bold")
   )
-  
-print
 ```
 
 
-
-```{r sum-stats, include=FALSE}
-summary_stats <- reward_trials %>%
-  group_by(group, reward_feedback) %>%
-  summarize(
-    mean_rt = mean(response_time, na.rm = TRUE),
-    mean_acc = mean(accuracy, na.rm = TRUE),
-    sd_rt = sd(response_time, na.rm = TRUE),
-    sd_acc = sd(accuracy, na.rm = TRUE),
-    n = n(),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    se_rt = sd_rt / sqrt(n),
-    se_acc = sd_acc / sqrt(n)
-  )
+## Figure 2
+```{r fig-2, include=TRUE}
+print(no2_plot)
 ```
+ADHD group tends to have longer response times compared to the neurotypical group, particularly at higher reward amounts.
 
 
-```{r format, include=FALSE}
-fig1_data <- summary_stats %>%
-  pivot_longer(
-    cols = c(mean_rt, mean_acc),
-    names_to = "metric",
-    values_to = "value"
-  ) %>%
-  mutate(
-    se = ifelse(metric == "mean_rt", se_rt, se_acc),
-    metric = recode(metric, 
-                    mean_rt = "Reaction Time (s)", 
-                    mean_acc = "Accuracy (%)")
-  )
-```
+## What does this mean?
+- ADHD and neurotypical groups exhibit distinct patterns in terms of both the accuracy and timing of their responses during the n-back task, especially when the task involves varying reward amounts and feedback.
+- Could imply differences in cognitive processing speed and decision-making when rewards are involved.
 
 
-
-```{r fig-1, include=FALSE}
-fig_1 <- ggplot(fig1_data, 
-                aes(x = reward_feedback, 
-                    y = value, 
-                    color = group, 
-                    group = group)) +
-  geom_line(size = 1) +
-  geom_point(size = 3) +
-  geom_errorbar(aes(ymin = value - se, ymax = value + se), width = 0.2) +
-  facet_wrap(~ metric, scales = "free_y") +
-  labs(
-    title = "Differences in Timing and Accuracy During Reward Trials",
-    x = "Reward Size - Feedback Type",
-    y = NULL,
-    color = "Group"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    strip.text = element_text(size = 12, face = "bold"),
-    legend.position = "top"
-  ) +
-  scale_y_continuous(expand = expansion(mult = c(0.1, 0.2)))
-```
-
-
-## Figure 1
-```{r print-plot, include=TRUE, warning=FALSE}
-print(fig_1)
-```
 
 
