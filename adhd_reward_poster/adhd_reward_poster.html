@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title>Cognitive Differences in Reward Processing and Working Memory between ADHD vs. Neurotypical Children</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 45in 38in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 45px;
+width: 45in;
+height: 38in;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 45in;
+height: 38in;
+padding: 0cm;
+}
+.title_container {
+width: 45in;
+height: calc(38in * 0.15);
+overflow: hidden;
+background-color: #0b4545;
+border: 0 solid #0b4545;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #cc0000;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #cc0000;
+}
+
+/* mouse over link */
+a:hover {
+color: #cc0000;
+}
+
+/* selected link */
+a:active {
+color: #cc0000;
+}
+.poster_body {
+-webkit-column-count: 4; /* Chrome, Safari, Opera */
+-moz-column-count: 4; /* Firefox */
+column-count: 4;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0b4545;
+-moz-column-rule-color: #0b4545;
+column-rule-color: #0b4545;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 75pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(45in + 0 + 0);
+height: calc(38in * 0.83);
+padding-top: calc(38in * 0.005);
+padding-bottom: calc(38in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #0b4545;
+background-color: #0b4545;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Cognitive Differences in Reward Processing and Working Memory between ADHD vs. Neurotypical Children</h1>
+<h3 id="author">Vidushi Kataria<sup>1</sup></h3><br>
+<h5 id="affiliation"><sup>1</sup> Rutgers University–New Brunswick</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+<img src=https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png style="width: 80%">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<p>`</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Understanding how reward sensitivity influences working memory performance in children with ADHD is crucial for designing targeted psychological and educational interventions.
+Working memory, the ability to hold and manipulate information over short periods, is fundamental to cognitive processes like learning and decision-making.
+By examining response timing and accuracy in an n-back task—a common working memory task—this study sheds light on how reward systems differ in ADHD versus neurotypical children.</p>
+<p>The data used is publicly available OpenNeuro dataset <em>Reward Sensitivity and Working Memory Performance in ADHD</em> (ds002424/1.2.0).</p>
+<div id="research-question" class="section level2">
+<h2><strong>Research Question</strong>:</h2>
+<ul>
+<li>How do children with ADHD and neurotypical children differ in their reward processing and working memory performance, as measured by accuracy and response time on a 2-back task?</li>
+</ul>
+</div>
+<div id="hypothesis" class="section level2">
+<h2><strong>Hypothesis</strong>:</h2>
+<ul>
+<li>Children with ADHD will show lower accuracy and longer response times compared to neurotypical children, reflecting differences in reward processing and working memory performance.</li>
+</ul>
+</div>
+<div id="plan" class="section level2">
+<h2><strong>Plan</strong>:</h2>
+<ol style="list-style-type: decimal">
+<li>Evaluate how reward sensitivity impacts working memory performance using response timing and accuracy metrics in 2-back tasks.</li>
+<li>Analyze differences in performance between ADHD and neurotypical groups under high and low incentive conditions.</li>
+</ol>
+</div>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<div id="participants" class="section level3">
+<h3>Participants</h3>
+<ul>
+<li>ADHD: sub-01, sub-02, sub-04, sub-05, sub-17</li>
+<li>Neurotypical: sub-03, sub-18, sub-19, sub-20, sub-21</li>
+<li>Ages 8-12</li>
+</ul>
+</div>
+<div id="data-collection" class="section level3">
+<h3>Data Collection</h3>
+<ul>
+<li><p><strong>Task</strong>: Participants completed n-back tasks under varying incentive conditions (monetary reward, feedback timing). There were 3 trial blocks conducted: baseline, 1-back, and 2-back. I chose to filter out responses only from the 2-back block as it will yield a higher variation in responses by being the most difficult task.</p></li>
+<li><p><strong>Measures</strong>: Response times and accuracy were recorded. Incentive levels were manipulated through rewards and feedback conditions, categorized as small or large.</p></li>
+</ul>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<table>
+<caption><span id="tab:fig-1">Table 1: </span>Accuracy and Response Time by Group</caption>
+<thead>
+<tr class="header">
+<th align="left">subject</th>
+<th align="left">statistic</th>
+<th align="right">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ADHD Group</td>
+<td align="left">mean_acc</td>
+<td align="right">0.7251553</td>
+</tr>
+<tr class="even">
+<td align="left">ADHD Group</td>
+<td align="left">sd_acc</td>
+<td align="right">0.4466094</td>
+</tr>
+<tr class="odd">
+<td align="left">ADHD Group</td>
+<td align="left">mean_rt</td>
+<td align="right">0.6773834</td>
+</tr>
+<tr class="even">
+<td align="left">ADHD Group</td>
+<td align="left">sd_rt</td>
+<td align="right">0.2053857</td>
+</tr>
+<tr class="odd">
+<td align="left">Neurotypical Group</td>
+<td align="left">mean_acc</td>
+<td align="right">0.8222826</td>
+</tr>
+<tr class="even">
+<td align="left">Neurotypical Group</td>
+<td align="left">sd_acc</td>
+<td align="right">0.3823786</td>
+</tr>
+<tr class="odd">
+<td align="left">Neurotypical Group</td>
+<td align="left">mean_rt</td>
+<td align="right">0.6706773</td>
+</tr>
+<tr class="even">
+<td align="left">Neurotypical Group</td>
+<td align="left">sd_rt</td>
+<td align="right">0.2064560</td>
+</tr>
+</tbody>
+</table>
+<p>The results show that children with ADHD have a lower mean accuracy (0.725) compared to neurotypical children (0.822), with a higher standard deviation in both accuracy and response time in the ADHD group. These findings support the hypothesis that children with ADHD exhibit lower accuracy and more variability in performance compared to neurotypical children.</p>
+<p><img src="adhd_reward_poster_files/figure-html/fig-2-1.png" width="960" /></p>
+<p>This plot shows that Neurotypical children have faster and more consistent response times under high incentive conditions, while ADHD children exhibit greater variability in their performance across both low and high incentive conditions, suggesting differences in reward sensitivity.</p>
+<p><img src="adhd_reward_poster_files/figure-html/fig-3-1.png" width="960" /></p>
+<p>This plot indicates that ADHD and Neurotypical children perform similarly under Low Incentive conditions, but under High Incentive conditions, ADHD children have statistically significant slower response times compared to Neurotypical children–as indicated by the confidence intervals not crossing zero. This suggests that incentive levels may influence the performance differences between the two groups, with ADHD children potentially struggling more under higher motivation or pressure conditions.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Try <code>posterdown</code> out! Hopefully you like it!</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

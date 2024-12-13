@@ -1,0 +1,435 @@
+---
+title: Cognitive Differences in Reward Processing and Working Memory between ADHD vs. Neurotypical Children
+author:
+  - name: Vidushi Kataria
+    affil: 1
+affiliation:
+  - num: 1
+    address: Rutgers University--New Brunswick
+column_numbers: 4
+logoright_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+logoleft_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+output: 
+  posterdown::posterdown_html:
+    self_contained: false
+bibliography: packages.bib
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(broom)
+library(Hmisc)
+library(kableExtra)
+library(purrr)
+```
+
+
+```{r events01_files, include=FALSE}
+adhd_subjects <- c("sub-01", "sub-02", "sub-04", "sub-05", "sub-17")
+neurotypical_subjects <- c("sub-03", "sub-18", "sub-19", "sub-20", "sub-21")
+
+sub01_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-01"
+
+events01_files <- list.files(
+  path = sub01_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub01_data <- lapply(events01_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events02_files, include=FALSE}
+sub02_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-02"
+
+events02_files <- list.files(
+  path = sub02_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub02_data <- lapply(events02_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events03_files, include=FALSE}
+sub03_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-03"
+
+events03_files <- list.files(
+  path = sub03_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub03_data <- lapply(events03_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events04_files, include=FALSE}
+sub04_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-04"
+
+events04_files <- list.files(
+  path = sub04_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub04_data <- lapply(events04_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events05_files, include=FALSE}
+sub05_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-05"
+
+events05_files <- list.files(
+  path = sub05_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub05_data <- lapply(events05_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+`
+```{r events17_files, include=FALSE}
+sub17_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-17"
+
+events17_files <- list.files(
+  path = sub17_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub17_data <- lapply(events17_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events18_files, include=FALSE}
+sub18_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-18"
+
+events18_files <- list.files(
+  path = sub18_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub18_data <- lapply(events18_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events19_files, include=FALSE}
+sub19_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-19"
+
+events19_files <- list.files(
+  path = sub19_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub19_data <- lapply(events19_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events20_files, include=FALSE}
+sub20_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-20"
+
+events20_files <- list.files(
+  path = sub20_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub20_data <- lapply(events20_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+```
+
+
+```{r events21_files, include=FALSE}
+sub21_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-21"
+
+events21_files <- list.files(
+  path = sub21_dir, 
+  pattern = "_events.tsv$", 
+  full.names = TRUE
+)
+
+sub21_data <- lapply(events21_files, function(file) {
+  df <- read_tsv(file)
+  task_name <- sub(".*task-(.*)_events.tsv$", "\\1", basename(file))
+  df$task <- task_name
+  
+  return(df)
+}) %>%
+  bind_rows()  
+
+```
+
+# Introduction
+Understanding how reward sensitivity influences working memory performance in children with ADHD is crucial for designing targeted psychological and educational interventions.
+Working memory, the ability to hold and manipulate information over short periods, is fundamental to cognitive processes like learning and decision-making. 
+By examining response timing and accuracy in an n-back task—a common working memory task—this study sheds light on how reward systems differ in ADHD versus neurotypical children.
+
+The data used is publicly available OpenNeuro dataset *Reward Sensitivity and Working Memory Performance in ADHD* (ds002424/1.2.0). 
+
+## **Research Question**: 
+- How do children with ADHD and neurotypical children differ in their reward processing and working memory performance, as measured by accuracy and response time on a 2-back task?
+
+## **Hypothesis**:
+- Children with ADHD will show lower accuracy and longer response times compared to neurotypical children, reflecting differences in reward processing and working memory performance.
+
+## **Plan**:
+1. Evaluate how reward sensitivity impacts working memory performance using response timing and accuracy metrics in 2-back tasks.
+2. Analyze differences in performance between ADHD and neurotypical groups under high and low incentive conditions.
+
+
+# Methods
+### Participants
+- ADHD: sub-01, sub-02, sub-04, sub-05, sub-17
+- Neurotypical: sub-03, sub-18, sub-19, sub-20, sub-21
+- Ages 8-12 
+
+### Data Collection
+- **Task**: Participants completed n-back tasks under varying incentive conditions (monetary reward, feedback timing). There were 3 trial blocks conducted: baseline, 1-back, and 2-back. I chose to filter out responses only from the 2-back block as it will yield a higher variation in responses by being the most difficult task.
+
+- **Measures**: Response times and accuracy were recorded. Incentive levels were manipulated through rewards and feedback conditions, categorized as small or large.
+
+
+# Results
+
+```{r wrangling, include=FALSE, warning=FALSE}
+adhd_data <- bind_rows(sub01_data, sub02_data, sub04_data, sub05_data, sub17_data) %>%
+  mutate(subject = rep(c("sub-01", "sub-02", "sub-04", "sub-05", "sub-17"), 
+                       times = c(nrow(sub01_data), nrow(sub02_data), nrow(sub04_data), 
+                                 nrow(sub05_data), nrow(sub17_data)))) %>%
+  filter(trial_type == "2-back")  
+
+adhd_data <- adhd_data %>%
+  mutate(response_time = as.numeric(response_time))
+
+sum(is.na(adhd_data$response_time))
+
+
+neurotypical_data <- bind_rows(sub03_data, sub18_data, sub19_data, sub20_data, sub21_data) %>%
+  mutate(subject = rep(c("sub-03", "sub-18", "sub-19", "sub-20", "sub-21"), 
+                       times = c(nrow(sub03_data), nrow(sub18_data), nrow(sub19_data), 
+                                 nrow(sub20_data), nrow(sub21_data)))) %>%
+  filter(trial_type == "2-back")
+
+neurotypical_data <- neurotypical_data %>%
+  mutate(response_time = as.numeric(response_time))
+
+sum(is.na(neurotypical_data$response_time))
+```
+
+
+```{r combined, include=FALSE}
+combined_data <- bind_rows(adhd_data, neurotypical_data)
+
+combined_data <- combined_data %>%
+  mutate(subject = case_when(
+    subject %in% c("sub-01", "sub-02", "sub-04", "sub-05", "sub-17") ~ "ADHD",
+    subject %in% c("sub-03", "sub-18", "sub-19", "sub-20", "sub-21") ~ "Neurotypical",
+    TRUE ~ subject
+  )) %>%
+  mutate(response_time = as.numeric(response_time)) %>%
+  drop_na()
+
+sum(is.na(combined_data$response_time))
+```
+
+
+```{r data_sum, include=FALSE}
+adhd_summary <- adhd_data %>%
+  summarise(
+    mean_acc = mean(accuracy, na.rm = TRUE),
+    sd_acc = sd(accuracy, na.rm = TRUE),
+    mean_rt = mean(response_time, na.rm = TRUE),
+    sd_rt = sd(response_time, na.rm = TRUE)
+  ) %>%
+  mutate(subject = "ADHD Group")
+
+
+neurotypical_summary <- neurotypical_data %>%
+  summarise(
+    mean_acc = mean(accuracy, na.rm = TRUE),
+    sd_acc = sd(accuracy, na.rm = TRUE),
+    mean_rt = mean(response_time, na.rm = TRUE),
+    sd_rt = sd(response_time, na.rm = TRUE)
+  ) %>%
+  mutate(subject = "Neurotypical Group")
+```
+
+
+```{r desc_stats_fig-1}
+desc_stats <- bind_rows(
+  adhd_summary %>%
+    select(subject, mean_acc, sd_acc, mean_rt, sd_rt) %>%
+    pivot_longer(cols = -subject, names_to = "statistic", values_to = "value"),
+  neurotypical_summary %>%
+    select(subject, mean_acc, sd_acc, mean_rt, sd_rt) %>%
+    pivot_longer(cols = -subject, names_to = "statistic", values_to = "value")
+)
+```
+
+
+```{r fig-1, include=TRUE}
+kable(desc_stats, 
+      caption = "Accuracy and Response Time by Group",
+      align = c("l", "l", "r"))
+```
+The results show that children with ADHD have a lower mean accuracy (0.725) compared to neurotypical children (0.822), with a higher standard deviation in both accuracy and response time in the ADHD group. These findings support the hypothesis that children with ADHD exhibit lower accuracy and more variability in performance compared to neurotypical children.
+
+
+```{r fig-2, include=TRUE, warning=FALSE, fig.height=10, fig.width=10}
+
+data_fig2 <- combined_data %>%  
+  mutate(
+    incentive = case_when(
+      grepl("S", task) ~ "Low Incentive",  
+      grepl("L", task) ~ "High Incentive", 
+      TRUE ~ "Other"
+    )
+  )
+
+
+desc_stats_incentive <- data_fig2 %>%  
+  group_by(subject, incentive, response_time) %>%  
+  summarise(
+    mean_acc_fig2 = mean(accuracy, na.rm = TRUE),
+    sd_acc_fig2 = sd(accuracy, na.rm = TRUE),
+    mean_rt_fig2 = mean(response_time, na.rm = TRUE),
+    sd_rt_fig2 = sd(response_time, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+
+ggplot(data_fig2, aes(x = incentive, y = response_time, fill = subject)) +
+  geom_violin(trim = TRUE, alpha = 0.6) + 
+  geom_jitter(aes(color = subject), position = position_jitter(0.2), alpha = 0.3, size = 1.5) + 
+  geom_point(data = desc_stats_incentive, aes(x = incentive, y = mean_rt_fig2, color = subject), 
+             size = 5, shape = 18, stroke = 2) + 
+  geom_errorbar(data = desc_stats_incentive, 
+                aes(x = incentive, ymin = mean_rt_fig2 - sd_rt_fig2, 
+                    ymax = mean_rt_fig2 + sd_rt_fig2, color = subject), 
+                width = 0.15, size = 1) +   
+  facet_wrap(~ incentive, scales = "free") +  
+  labs(title = "Response Time by Incentive and Group", x = "Incentive", y = "Response Time") + 
+  theme_minimal(base_size = 15) + 
+  scale_color_manual(values = c("ADHD" = "red", "Neurotypical" = "blue")) +  
+  scale_fill_manual(values = c("ADHD" = "red", "Neurotypical" = "blue")) +   
+  theme(
+    legend.position = "top", 
+    axis.text = element_text(size = 14), 
+    axis.title = element_text(size = 16),  
+    plot.title = element_text(size = 18, face = "bold")  
+  )
+
+```
+
+This plot shows that Neurotypical children have faster and more consistent response times under high incentive conditions, while ADHD children exhibit greater variability in their performance across both low and high incentive conditions, suggesting differences in reward sensitivity. 
+
+
+```{r fig-3, include=TRUE, fig.height=10, fig.width=10}
+rt_t_test <- data_fig2 %>%  
+  group_by(incentive) %>%
+  do(tidy(t.test(response_time ~ subject, data = .)))  
+
+ggplot(rt_t_test, aes(x = incentive, y = estimate, fill = incentive)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.6) + 
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +  
+  scale_fill_manual(values = c("High Incentive" = "lightblue", "Low Incentive" = "lightgreen")) +
+  labs(title = "Mean RT by Incentive (w/ Conf. Intervals)",
+       x = "Incentive Condition", y = "Mean Difference in Response Time") +
+  theme_minimal(base_size = 15) +
+  theme(
+    legend.position = "none",
+    axis.text = element_text(size = 14, face = "bold"), 
+    axis.title = element_text(size = 16, face = "bold"),  
+    plot.title = element_text(size = 18, face = "bold")  
+  ) +
+  geom_text(aes(x = incentive, y = estimate + 0.05, 
+                label = ifelse(p.value < 0.05, "*", "")), 
+            size = 6, color = "black")
+
+
+```
+
+
+This plot indicates that ADHD and Neurotypical children perform similarly under Low Incentive conditions, but under High Incentive conditions, ADHD children have statistically significant slower response times compared to Neurotypical children--as indicated by the confidence intervals not crossing zero. This suggests that incentive levels may influence the performance differences between the two groups, with ADHD children potentially struggling more under higher motivation or pressure conditions.
+
+
+
+
+# Conclusion
+
+Try `posterdown` out! Hopefully you like it!
+
+```{r, include=FALSE}
+knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
+```
+
+# References
