@@ -235,16 +235,17 @@ By examining response timing and accuracy in an n-back task—a common working m
 
 The data used is publicly available OpenNeuro dataset *Reward Sensitivity and Working Memory Performance in ADHD* (ds002424/1.2.0). 
 
-## **Research Question**: 
-- How do children with ADHD and neurotypical children differ in their reward processing and working memory performance, as measured by accuracy and response time on a 2-back task?
+**Research Question**: 
+How do children with ADHD and neurotypical children differ in their reward processing and working memory performance, as measured by accuracy and response time on a 2-back task?
 
-## **Hypothesis**:
-- Children with ADHD will show lower accuracy and longer response times compared to neurotypical children, reflecting differences in reward processing and working memory performance.
+**Hypothesis**:
+Children with ADHD will show lower accuracy and longer response times compared to neurotypical children, reflecting differences in reward processing and working memory performance.
 
-## **Plan**:
-1. Evaluate how reward sensitivity impacts working memory performance using response timing and accuracy metrics in 2-back tasks.
+**Plan**:
+
+1. Evaluate how reward sensitivity impacts working memory performance using accuracy and response timing metrics in 2-back tasks.
+
 2. Analyze differences in performance between ADHD and neurotypical groups under high and low incentive conditions.
-
 
 # Methods
 ### Participants
@@ -253,10 +254,8 @@ The data used is publicly available OpenNeuro dataset *Reward Sensitivity and Wo
 - Ages 8-12 
 
 ### Data Collection
-- **Task**: Participants completed n-back tasks under varying incentive conditions (monetary reward, feedback timing). There were 3 trial blocks conducted: baseline, 1-back, and 2-back. I chose to filter out responses only from the 2-back block as it will yield a higher variation in responses by being the most difficult task.
-
-- **Measures**: Response times and accuracy were recorded. Incentive levels were manipulated through rewards and feedback conditions, categorized as small or large.
-
+**Task**: Participants completed n-back tasks under varying incentive conditions (monetary reward, feedback timing). There were 3 trial blocks conducted: baseline, 1-back, and 2-back. I chose to filter out responses only from the 2-back block as it will yield a higher variation in responses by being the most difficult task.
+**Measures**: Response times and accuracy were recorded. Incentive levels were manipulated through rewards (small or large) and feedback conditions (immediate or delayed).
 
 # Results
 
@@ -390,46 +389,57 @@ ggplot(data_fig2, aes(x = incentive, y = response_time, fill = subject)) +
 
 ```
 
-This plot shows that Neurotypical children have faster and more consistent response times under high incentive conditions, while ADHD children exhibit greater variability in their performance across both low and high incentive conditions, suggesting differences in reward sensitivity. 
+This plot shows that ADHD children have significantly slower response times than Neurotypical children under High Incentive conditions, while there is no significant difference under Low Incentive conditions. These findings support my hypothesis that incentive levels impact response times, with ADHD children struggling more when motivation is higher.
+
 
 
 ```{r fig-3, include=TRUE, fig.height=10, fig.width=10}
-rt_t_test <- data_fig2 %>%  
-  group_by(incentive) %>%
-  do(tidy(t.test(response_time ~ subject, data = .)))  
+data_fig3 <- data_fig2 %>%
+  mutate(subject_group = case_when(
+    subject %in% c("sub-01", "sub-02", "sub-04", "sub-05", "sub-17") ~ "ADHD",
+    subject %in% c("sub-03", "sub-18", "sub-19", "sub-20", "sub-21") ~ "Neurotypical",
+    FALSE ~ "Other"
+  ))
 
-ggplot(rt_t_test, aes(x = incentive, y = estimate, fill = incentive)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.6) + 
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +  
-  scale_fill_manual(values = c("High Incentive" = "lightblue", "Low Incentive" = "lightgreen")) +
-  labs(title = "Mean RT by Incentive (w/ Conf. Intervals)",
-       x = "Incentive Condition", y = "Mean Difference in Response Time") +
+
+desc_stats_fig3 <- data_fig3 %>%
+  group_by(incentive, subject) %>%
+  summarise(
+    mean_rt = mean(response_time, na.rm = TRUE),
+    sd_rt = sd(response_time, na.rm = TRUE),
+    ci_lower = mean_rt - qt(0.975, length(response_time) - 1) * sd_rt / sqrt(length(response_time)),
+    ci_upper = mean_rt + qt(0.975, length(response_time) - 1) * sd_rt / sqrt(length(response_time)),
+    .groups = 'drop'
+  )
+
+
+ggplot(desc_stats_fig3, aes(x = incentive, y = mean_rt, fill = subject, color = subject)) +
+  geom_boxplot(alpha = 0.3, width = 0.6, outlier.shape = NA) + 
+  geom_jitter(aes(shape = subject), position = position_jitter(0.2), size = 2, alpha = 0.6) +  
+  geom_point(data = desc_stats_fig3, aes(x = incentive, y = mean_rt), color = "black", size = 4, shape = 18) + 
+  geom_errorbar(data = desc_stats_fig3, aes(x = incentive, ymin = ci_lower, ymax = ci_upper), width = 0.2) +  
+  scale_fill_manual(values = c("ADHD" = "red", "Neurotypical" = "blue")) +
+  scale_color_manual(values = c("ADHD" = "red", "Neurotypical" = "blue")) +
+  labs(title = "Response Time by Incentive w/ Conf. Levels", x = "Incentive", y = "Response Time") +
   theme_minimal(base_size = 15) +
   theme(
-    legend.position = "none",
-    axis.text = element_text(size = 14, face = "bold"), 
-    axis.title = element_text(size = 16, face = "bold"),  
-    plot.title = element_text(size = 18, face = "bold")  
-  ) +
-  geom_text(aes(x = incentive, y = estimate + 0.05, 
-                label = ifelse(p.value < 0.05, "*", "")), 
-            size = 6, color = "black")
-
-
+    legend.position = "right",
+    axis.text = element_text(size = 14, face = "bold"),
+    axis.title = element_text(size = 16, face = "bold"),
+    plot.title = element_text(size = 18, face = "bold")
+  )
 ```
-
 
 This plot indicates that ADHD and Neurotypical children perform similarly under Low Incentive conditions, but under High Incentive conditions, ADHD children have statistically significant slower response times compared to Neurotypical children--as indicated by the confidence intervals not crossing zero. This suggests that incentive levels may influence the performance differences between the two groups, with ADHD children potentially struggling more under higher motivation or pressure conditions.
 
 
-
-
 # Conclusion
+The analysis of response times by incentive condition revealed some interesting trends between ADHD and neurotypical children. The violin plot and boxplot with error bars show that, under both high and low incentive conditions, ADHD children exhibited a statistically significant delay in response times compared to neurotypical children.The overall trends suggest a potential difference, the response times of ADHD children were somewhat more spread out, especially under high incentive conditions.
 
-Try `posterdown` out! Hopefully you like it!
+The summary statistics table further supports these findings, with ADHD children showing slightly longer response times compared to neurotypical children under both incentive conditions. This suggests that incentive conditions might influence cognitive performance, particularly for ADHD children, although the variability in response times remains significant. These results partially confirm the hypothesis that incentives may impact ADHD children differently than neurotypical children, especially when the rewards are high, but further exploration with a larger sample size is needed to establish this link more robustly.
+
+# References
 
 ```{r, include=FALSE}
 knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
 ```
-
-# References
