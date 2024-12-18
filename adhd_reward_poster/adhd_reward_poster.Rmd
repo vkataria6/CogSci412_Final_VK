@@ -7,8 +7,6 @@ affiliation:
   - num: 1
     address: Rutgers University--New Brunswick
 column_numbers: 4
-logoright_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
-logoleft_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
 output: 
   posterdown::posterdown_html:
     self_contained: false
@@ -127,7 +125,7 @@ sub05_data <- lapply(events05_files, function(file) {
   bind_rows()  
 ```
 
-`
+
 ```{r events17_files, include=FALSE}
 sub17_dir <- "/Users/vidushikataria/Downloads/CogSci412_Final_VK/final_proj/sub-17"
 
@@ -233,7 +231,7 @@ Understanding how reward sensitivity influences working memory performance in ch
 Working memory, the ability to hold and manipulate information over short periods, is fundamental to cognitive processes like learning and decision-making. 
 By examining response timing and accuracy in an n-back task—a common working memory task—this study sheds light on how reward systems differ in ADHD versus neurotypical children.
 
-The data used is publicly available OpenNeuro dataset *Reward Sensitivity and Working Memory Performance in ADHD* (ds002424/1.2.0). 
+The data used is publicly available on OpenNeuro: *Reward Sensitivity and Working Memory Performance* [@ds002424].
 
 **Research Question**: 
 How do children with ADHD and neurotypical children differ in their reward processing and working memory performance, as measured by accuracy and response time on a 2-back task?
@@ -440,6 +438,15 @@ The summary statistics table further supports these findings, with ADHD children
 
 # References
 
-```{r, include=FALSE}
-knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
-```
+The `knitr` package is widely used for dynamic reporting [@R-knitr].
+
+Pagedown simplifies paginated HTML output [@R-pagedown].
+
+Conference posters can be dynamically generated using the posterdown package [@R-posterdown].
+
+The rmarkdown package provides tools for creating dynamic and reproducible documents [@R-rmarkdown].
+
+The "R Markdown Cookbook" provides advanced solutions and recipes for R Markdown users [@rmarkdown2020].
+
+The dataset used in this study is publicly available [@ds002424].
+
